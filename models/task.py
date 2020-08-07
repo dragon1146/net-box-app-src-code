@@ -1,9 +1,25 @@
 import sqlite3
+from db import db
 
+# the db.Model was added to the creation of the TaskModel as an
+# extention
+# this allows the TaskModel to inherite methods from the db.Model
+# object
+# this will tell the app that we are going to be saving and
+# retrieving data from the database using the db.model object
 
+class TaskModel(db.Model):
+    # the below code will tell the app the name of the table that
+    # will be used to store and retrieve data in the database
 
-class TaskModel:
-    def __init__(self, task, command):
+    __tablename__ = networking_toolbox
+    manufacture = db.column(db.String)
+    device = db.column(db.String)
+    task = db.column(db.String)
+    command = db.column(db.Text)
+    notes = db.column(db.Text)
+
+    def __init__(self, manufacture, device,  task, command, notes):
       self.task = task
       self.command = command
      

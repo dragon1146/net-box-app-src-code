@@ -10,6 +10,10 @@ from resources.task import Task
 
 app = Flask(__name__)
 api = Api(app)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////var/lib/docker/volumes/net-box-app-vol/_data/db.py'
+
+
 
 
 @app.route("/")
@@ -31,20 +35,7 @@ def search_for_ref(word):
 
 
 
-
-# app.secret_key = 'jose'
-
-# jwt = JWT(app, authenticate, identity)
-
-
-
-api.add_resource(Task, '/task/<string:task>')
-
-
-
-# api.add_resource(Itemlist, '/items')
-# api.add_resource(UserRegister, '/register')
-
-# debug=True will allow the source of the API to be updated and synced without restarting the API
 if __name__=='__main__':
-    app.run(port=5000, debug=True, host = '0.0.0.0')
+
+  from db import db
+  app.run(port=5000, debug=True, host = '0.0.0.0')
