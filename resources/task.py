@@ -34,11 +34,11 @@ class Task(Resource):
             return {'message':"A task already exist with '{}'".format(task),},400
        
         data = Task.parser.parse_args()
-        task = TaskModel(task, data['command'])
+        task = TaskModel(data['manufacture'], data['device'], task, data['command'], data['notes'])
         
 
         try:
-            task.insert()
+            task.save_to_db()
         except:
             return {'message':"an error occurred when inserting that new task"}, 500
         

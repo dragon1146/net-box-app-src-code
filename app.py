@@ -11,7 +11,7 @@ from resources.task import Task
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////var/lib/docker/volumes/net-box-app-vol/_data/db.py'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/glitch/Documents/pythonRelated/IT-Toolkit/project-net-box-app/ref/net_box.db'
 
 
 
