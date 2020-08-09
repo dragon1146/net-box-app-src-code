@@ -14,12 +14,14 @@ class TaskModel(db.Model):
     # the below code will tell the app the name of the table that
     # will be used to store and retrieve data in the database
 
-    __tablename__ = networking_toolbox
-    manufacture = db.column(db.String)
-    device = db.column(db.String)
-    task = db.column(db.String)
-    command = db.column(db.Text)
-    notes = db.column(db.Text)
+    __tablename__ = 'net_box'
+
+    id = db.Column(db.Integer, primary_key=True)
+    manufacture = db.Column(db.String)
+    device = db.Column(db.String)
+    task = db.Column(db.String)
+    command = db.Column(db.Text)
+    notes = db.Column(db.Text)
 
     def __init__(self, manufacture, device,  task, command, notes):
       self.task = task

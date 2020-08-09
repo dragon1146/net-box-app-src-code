@@ -20,13 +20,23 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/glitch/Documents/python
 def home():
   return render_template("index.html")
 
-@app.route("/search", methods=["POST", "GET"])
-def search():
-  if request.method == "POST":
-      key_word = request.form["key_word"]
-      return redirect(url_for("search_for_ref", word=key_word))
-  else:
-      return render_template("search.html")
+class Tool(Resource):
+  def get(self, task):
+    return {'Tool': task}
+
+api.add_resource(Tool, '/tool/<string:task>')
+
+
+# the below lines of code is used for a regular flask webapp route
+# decorator
+# it defines both a "GET" & "POST" method
+# @app.route("/search", methods=["POST", "GET"])
+# def search():
+#   if request.method == "POST":
+#       key_word = request.form["key_word"]
+#       return redirect(url_for("search_for_ref", word=key_word))
+#   else:
+#       return render_template("search.html")
 
 @app.route("/<word>")
 def search_for_ref(word):

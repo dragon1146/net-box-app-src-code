@@ -23,15 +23,15 @@ class Task(Resource):
         try:
             task = TaskModel.find_by_name(task)
         except:
-            return {'message':"there was a problem with SQL while retrieving the item."}, 500
+            return {'message':"there was a problem with SQL while retrieving the network tool."}, 500
         
         if task:
             return task.json()
-        return {'message':"Task not found"}, 404 
+        return {'message':"Network tool not found"}, 404 
     
     def post(self, task):
         if TaskModel.find_by_name(task):
-            return {'message':"A task already exist with '{}'".format(task),},400
+            return {'message':"A network tool already exist with '{}'".format(task),},400
        
         data = Task.parser.parse_args()
         task = TaskModel(data['manufacture'], data['device'], task, data['command'], data['notes'])
@@ -40,7 +40,7 @@ class Task(Resource):
         try:
             task.save_to_db()
         except:
-            return {'message':"an error occurred when inserting that new task"}, 500
+            return {'message':"an error occurred when inserting that new network tool into the toolbox"}, 500
         
         return task.json(), 201
 
